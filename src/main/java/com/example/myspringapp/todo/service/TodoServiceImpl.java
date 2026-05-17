@@ -39,4 +39,10 @@ public class TodoServiceImpl implements TodoService {
         return todoRepository.findAll().stream().map(todoMapper::toResponse).toList();
 
     }
+
+    @Override
+    public TodoResponse getTodoById(Long id) {
+        return todoMapper.toResponse(todoRepository.findTodoById(id));
+
+    }
 }
