@@ -1,5 +1,7 @@
 package com.example.myspringapp.todo.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.myspringapp.todo.domain.Todo;
@@ -30,5 +32,11 @@ public class TodoServiceImpl implements TodoService {
 
         Todo savedTodo = todoRepository.save(todo);
         return todoMapper.toResponse(savedTodo);
+    }
+
+    @Override
+    public List<TodoResponse> getAllTodos() {
+        return todoRepository.findAll().stream().map(todoMapper::toResponse).toList();
+
     }
 }
