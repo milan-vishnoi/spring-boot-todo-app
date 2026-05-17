@@ -11,4 +11,6 @@ public interface TodoService {
 
     List<TodoResponse> getAllTodos();
 
+    TodoResponse getTodoById(Long id);
+
 }

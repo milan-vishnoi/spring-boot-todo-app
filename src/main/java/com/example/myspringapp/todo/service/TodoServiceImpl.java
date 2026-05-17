@@ -11,6 +11,8 @@ import com.example.myspringapp.todo.dto.TodoResponse;
 import com.example.myspringapp.todo.mapper.TodoMapper;
 import com.example.myspringapp.todo.repository.TodoRepository;
 
+import com.example.myspringapp.common.exception.ResourceNotFoundException;
+
 @Service
 public class TodoServiceImpl implements TodoService {
 
@@ -38,5 +40,17 @@ public class TodoServiceImpl implements TodoService {
     public List<TodoResponse> getAllTodos() {
         return todoRepository.findAll().stream().map(todoMapper::toResponse).toList();
 
+    }
+
+    @Override
+    public TodoResponse getTodoById(Long id) {
+        Todo todo = findTodoById(id);
+        return todoMapper.toResponse(todo);
+
+    }
+
+    private Todo findTodoById(Long id) {
+        return todoRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Todo not found with id: " + id));
     }
 }
