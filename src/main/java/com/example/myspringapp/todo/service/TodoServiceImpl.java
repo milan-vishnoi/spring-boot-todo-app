@@ -4,14 +4,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.myspringapp.common.exception.ResourceNotFoundException;
 import com.example.myspringapp.todo.domain.Todo;
 import com.example.myspringapp.todo.domain.TodoStatus;
 import com.example.myspringapp.todo.dto.CreateTodoRequest;
 import com.example.myspringapp.todo.dto.TodoResponse;
+import com.example.myspringapp.todo.dto.UpdateTodoRequest;
 import com.example.myspringapp.todo.mapper.TodoMapper;
 import com.example.myspringapp.todo.repository.TodoRepository;
-
-import com.example.myspringapp.common.exception.ResourceNotFoundException;
 
 @Service
 public class TodoServiceImpl implements TodoService {
@@ -46,6 +46,19 @@ public class TodoServiceImpl implements TodoService {
     public TodoResponse getTodoById(Long id) {
         Todo todo = findTodoById(id);
         return todoMapper.toResponse(todo);
+
+    }
+
+    @Override
+    public TodoResponse updateTodo(Long id, UpdateTodoRequest request) {
+        Todo todo = findTodoById(id);
+        todo.setTitle(request.getTitle().trim());
+        todo.setDescription(request.getDescription());
+        todo.setStatus(request.getStatus() == null ? TodoStatus.PENDING : request.getStatus());
+        todo.setDueDate(request.getDueDate());
+
+        Todo updatedTodo = todoRepository.save(todo);
+        return todoMapper.toResponse(updatedTodo);
 
     }
 

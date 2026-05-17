@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.myspringapp.todo.dto.CreateTodoRequest;
 import com.example.myspringapp.todo.dto.TodoResponse;
+import com.example.myspringapp.todo.dto.UpdateTodoRequest;
 
 public interface TodoService {
 
@@ -12,5 +13,7 @@ public interface TodoService {
     List<TodoResponse> getAllTodos();
 
     TodoResponse getTodoById(Long id);
+
+    TodoResponse updateTodo(Long id, UpdateTodoRequest request);
 
 }
