@@ -2,8 +2,10 @@ package com.example.myspringapp.todo.controller;
 
 import java.util.List;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,13 +41,19 @@ public class TodoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TodoResponse> getTodoById(@PathVariable Long id) {
+    public ResponseEntity<TodoResponse> getTodoById(@PathVariable long id) {
         return ResponseEntity.ok(todoService.getTodoById(id));
 
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TodoResponse> updateTodo(@PathVariable Long id, @RequestBody UpdateTodoRequest request) {
+    public ResponseEntity<TodoResponse> updateTodo(@PathVariable long id, @RequestBody UpdateTodoRequest request) {
         return ResponseEntity.ok(todoService.updateTodo(id, request));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTodo(@PathVariable(name="id") long id) {
+        todoService.deleteTodo(id);
+        return ResponseEntity.noContent().build();
     }
 }

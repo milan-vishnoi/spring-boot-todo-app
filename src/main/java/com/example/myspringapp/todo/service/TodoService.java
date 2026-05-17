@@ -16,4 +16,6 @@ public interface TodoService {
 
     TodoResponse updateTodo(Long id, UpdateTodoRequest request);
 
+    void deleteTodo(Long id);
+
 }
