@@ -2,9 +2,9 @@ package com.example.myspringapp.todo.controller;
 
 import java.util.List;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +20,7 @@ import com.example.myspringapp.todo.dto.UpdateTodoRequest;
 import com.example.myspringapp.todo.service.TodoService;
 
 @RestController
+@CrossOrigin  // Same as writing @CrossOrigin(origins="*")
 @RequestMapping("/api/v1/todos")
 public class TodoController {
 
@@ -52,7 +53,7 @@ public class TodoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTodo(@PathVariable(name="id") long id) {
+    public ResponseEntity<Void> deleteTodo(@PathVariable(name = "id") long id) {
         todoService.deleteTodo(id);
         return ResponseEntity.noContent().build();
     }
