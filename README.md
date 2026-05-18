@@ -3,7 +3,8 @@ For ease of use, currently using the embedded h2 database which saves the data i
 
 The app also has MCP endpoints and hence can be used by AI agents such as codex.
 
-# Commands(all the commands are run from the root directory):
+# Commands:
+All the commands needs to be run from the root directory
 
 ### To build the project:
 `mvnw.cmd compile`
