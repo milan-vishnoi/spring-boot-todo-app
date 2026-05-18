@@ -3,21 +3,21 @@ For ease of use, currently using the embedded h2 database which saves the data i
 
 The app also has MCP endpoints and hence can be used by AI agents such as codex.
 
-## Commands(all the commands are run from the root directory):
+# Commands(all the commands are run from the root directory):
 
-# To build the project:
+### To build the project:
 `mvnw.cmd compile`
 
-# To clean the project:
+### To clean the project:
 `mvnw.cmd clean`
 
-# To run the app:
+### To run the app:
 `mvnw.cmd spring-boot:run`
 
-# To create the jar file:
+### To create the jar file:
 `mvnw.cmd package`
 
-# To install the app (places the jar into .m2/repository so that other projects can access it):
+### To install the app (places the jar into .m2/repository so that other projects can access it):
 `mvnw.cmd install`
 
 
